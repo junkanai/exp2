@@ -22,13 +22,23 @@ inline int calc_answer(const float model[DNA], const float image[IN]) noexcept {
 		if ( mid[m] < 0 ) mid[m] = 0;
 	}
 
-	float out[OUT];
+	float mid2[MID2];
+	rep(m, MID2) {
+		mid2[m] = *model;
+		++model;
+		rep(i, MID) {
+			mid2[m] += *model * mid[i];
+			++model;
+		}
+		if ( mid2[m] < 0 ) mid2[m] = 0;
+	}
 
+	float out[OUT];
 	rep(o, OUT) {
 		out[o] = *model;
 		++model;
 		rep(m, MID) {
-			out[o] += mid[m] * (*model);
+			out[o] += mid2[m] * (*model);
 			++model;
 		}
 	}
@@ -69,13 +79,23 @@ inline int calc_answer(const int model[DNA], const int image[IN]) noexcept {
 		if ( mid[m] < 0 ) mid[m] = 0;
 	}
 
-	int out[OUT];
+	int mid2[MID2];
+	rep(m, MID2) {
+		mid2[m] = *model;
+		++model;
+		rep(i, MID) {
+			mid2[m] += *model * mid[i];
+			++model;
+		}
+		if ( mid2[m] < 0 ) mid2[m] = 0;
+	}
 
+	int out[OUT];
 	rep(o, OUT) {
 		out[o] = *model;
 		++model;
 		rep(m, MID) {
-			out[o] += mid[m] * (*model);
+			out[o] += mid2[m] * (*model);
 			++model;
 		}
 	}
@@ -116,13 +136,23 @@ inline int calc_answer(const int model[DNA], const int image[IN]) noexcept {
 		if ( mid[m] < 0 ) mid[m] = 0;
 	}
 
-	int out[OUT];
+	int mid2[MID2];
+	rep(m, MID2) {
+		mid2[m] = *model;
+		++model;
+		rep(i, MID) {
+			mid2[m] += *model * mid[i];
+			++model;
+		}
+		if ( mid2[m] < 0 ) mid2[m] = 0;
+	}
 
+	int out[OUT];
 	rep(o, OUT) {
 		out[o] = *model;
 		++model;
 		rep(m, MID) {
-			out[o] += mid[m] * (*model);
+			out[o] += mid2[m] * (*model);
 			++model;
 		}
 	}
@@ -194,8 +224,8 @@ void evaluate_by_scalar(float log[LOG]) {
 		scores[p] = calc_score(models[p]);
 		sparses[p] = calc_sparse(models[p]);
 		sum += scores[p];
-		// total_scores[p] = ((float)scores[p] / DATA) * 0.5 + ((float)sparses[p] / DNA) * 0.5;
-		total_scores[p] = std::hypot(float(scores[p]) / DATA, float(sparses[p]) / DNA);
+		total_scores[p] = ((float)scores[p] / DATA) * 0.5 + ((float)sparses[p] / DNA) * 0.5;
+		//total_scores[p] = std::hypot(float(scores[p]) / DATA, float(sparses[p]) / DNA);
 	}
 
 	std::sort(rank, rank+POP,

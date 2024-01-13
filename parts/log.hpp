@@ -1,6 +1,7 @@
 void init_log(std::string source_code_file_name) {
-	codename = "test_";
-	codename += source_code_file_name.erase(source_code_file_name.find(".cpp"));
+	//codename = "test_";
+	//codename += source_code_file_name.erase(source_code_file_name.find(".cpp"));
+	codename = source_code_file_name.erase(source_code_file_name.find(".cpp"));
 }
 
 void print_log(const size_t gen) noexcept {

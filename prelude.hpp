@@ -16,9 +16,10 @@
 static constexpr size_t DATA    = 10000;
 static constexpr size_t IN      = 49;
 static constexpr size_t MID     = 25;
+static constexpr size_t MID2    = 25;
 static constexpr size_t OUT     = 10;
-static constexpr size_t BIAS    = MID + OUT;  /* 35 */
-static constexpr size_t DNA     = IN * MID + MID * OUT + BIAS; /* 1510 */
+static constexpr size_t BIAS    = MID + MID2 + OUT;  /* 60 */
+static constexpr size_t DNA     = IN * MID + MID * MID2 + MID2 * OUT + BIAS; /* 2060 */
 
 static constexpr size_t LOG     = 2;
 static constexpr std::string_view LOGINFO[LOG] = {"best", "ave"};
