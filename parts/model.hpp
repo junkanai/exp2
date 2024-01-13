@@ -159,7 +159,8 @@ void evaluate_by_scalar(float log[LOG]) {
 		scores[p] = calc_score(models[p]);
 		sparses[p] = calc_sparse(models[p]);
 		sum += scores[p];
-		total_scores[p] = ((float)scores[p] / DATA) * 0.5 + ((float)sparses[p] / DNA) * 0.5;
+		// total_scores[p] = ((float)scores[p] / DATA) * 0.5 + ((float)sparses[p] / DNA) * 0.5;
+		total_scores[p] = std::hypot(float(scores[p]) / DATA, float(sparses[p]) / DNA);
 	}
 
 	std::sort(rank, rank+POP,
