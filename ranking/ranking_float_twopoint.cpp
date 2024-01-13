@@ -1,8 +1,9 @@
+#define FLOAT
 #include "../prelude.hpp"
 
 int main() {
 	init_mnist();
-	init_model_float();
+	init_model();
 	init_log(__FILE__);
 
 	rep(gen, GEN) {
@@ -17,7 +18,7 @@ int main() {
 			twopoint_crossover(parents[i_mom], parents[i_dad], models[p]);
 		}
 
-		mutation_float();
+		mutation();
 	}
 
 	save_log();

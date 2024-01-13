@@ -1,4 +1,4 @@
-#ifndef FLOAT
+#ifdef FLOAT
 inline void onepoint_crossover(const float mom[DNA], const float dad[DNA], float child[DNA])  noexcept {
 	size_t point = rnd_size_t(DNA);
 

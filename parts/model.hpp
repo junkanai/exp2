@@ -56,6 +56,41 @@ void init_model() noexcept {
 		rank[p] = p;
 	}
 }
+inline int calc_answer(const int model[DNA], const int image[IN]) noexcept {
+	int mid[MID];
+
+	rep(m, MID) {
+		mid[m] = *model;
+		++model;
+		rep(i, IN) {
+			mid[m] += *model * image[i];
+			++model;
+		}
+		if ( mid[m] < 0 ) mid[m] = 0;
+	}
+
+	int out[OUT];
+
+	rep(o, OUT) {
+		out[o] = *model;
+		++model;
+		rep(m, MID) {
+			out[o] += mid[m] * (*model);
+			++model;
+		}
+	}
+
+	return (int)(std::max_element(out, out+10) - out);
+}
+
+inline int calc_score(const int model[DNA]) {
+	int rtn = 0;
+	rep(d, DATA) {
+		int answer = calc_answer(model, images[d]);
+		if ( answer == labels[d] ) rtn += 1;
+	}
+	return rtn;
+}
 #endif
 
 #ifdef TERNARY

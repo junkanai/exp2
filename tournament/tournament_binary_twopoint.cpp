@@ -1,9 +1,9 @@
-#define INT
+#define BINARY
 #include "../prelude.hpp"
 
 int main() {
 	init_mnist();
-	init_model_binary();
+	init_model();
 	init_log(__FILE__);
 
 	rep(gen, GEN) {
@@ -18,7 +18,7 @@ int main() {
 			twopoint_crossover(parents[i_mom], parents[i_dad], models[p]);
 		}
 
-		mutation_binary();
+		mutation();
 	}
 
 	save_log();

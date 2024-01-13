@@ -1,5 +1,6 @@
 void init_log(std::string source_code_file_name) {
-	codename = source_code_file_name.erase(source_code_file_name.find(".cpp"));
+	codename = "test_";
+	codename += source_code_file_name.erase(source_code_file_name.find(".cpp"));
 }
 
 void print_log(const size_t gen) noexcept {
@@ -16,6 +17,7 @@ void set_ave_to_log(const float value, float log[LOG]) {
 }
 
 
+#ifdef TERNARY
 void save_fitness() {
 	std::ofstream ofs(codename + "_sparse.csv");
 
@@ -29,6 +31,7 @@ void save_fitness() {
 		ofs << std::endl;
 	}
 }
+#endif
 
 void save_log() {
 	std::ofstream ofs(codename + ".csv");
